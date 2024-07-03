@@ -2,6 +2,7 @@ using System;
 using Player.Kirby;
 using StateMachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class KirbyStateMachine : MonoBehaviour, IStateMachine
 {
@@ -12,6 +13,12 @@ public class KirbyStateMachine : MonoBehaviour, IStateMachine
     private KirbyStateMachineFactory _factory;
     private KirbyBaseState _currentState;
     
+    //Input
+    private PlayerInput _playerInput;
+    private InputAction _move;
+    private InputAction _jump;
+    
+    
     //Public getters and setters
     public KirbyBaseState CurrentState { get => _currentState; set => _currentState = value; }
     
@@ -19,6 +26,12 @@ public class KirbyStateMachine : MonoBehaviour, IStateMachine
     void Start()
     {
         _boxCollider = GetComponent<BoxCollider2D>();
+        
+        //Input Setup
+        _playerInput = GameObject.FindWithTag("Controller Manager").GetComponent<PlayerInput>();
+        _playerInput.SwitchCurrentActionMap("Player");
+        _move = _playerInput.actions["Move"];
+        _jump = _playerInput.actions["Jump"];
         
         //State Machine setup
         _factory = new KirbyStateMachineFactory(this);

@@ -4,7 +4,7 @@ namespace Player.Kirby
     {
         protected KirbyStateMachine _context;
         protected KirbyStateMachineFactory _factory;
-        
+
         public KirbyBaseState(KirbyStateMachine context, KirbyStateMachineFactory factory)
         {
             _context = context;
