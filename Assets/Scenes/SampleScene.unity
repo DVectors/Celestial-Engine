@@ -418,6 +418,7 @@ GameObject:
   - component: {fileID: 1108629927}
   - component: {fileID: 1108629926}
   - component: {fileID: 1108629928}
+  - component: {fileID: 1108629929}
   m_Layer: 0
   m_Name: Kirby
   m_TagString: Untagged
@@ -509,6 +510,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1108629929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108629925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f964bcfd8b19bb4bac6a05afb1f7589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1967917765
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +566,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!4 &1967917767

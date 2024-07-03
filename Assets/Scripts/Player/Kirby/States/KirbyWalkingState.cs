@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Player.Kirby.States
 {
     public class KirbyWalkingState : KirbyBaseState
@@ -8,27 +10,31 @@ namespace Player.Kirby.States
 
         public override void EnterState()
         {
-            throw new System.NotImplementedException();
+
         }
 
         public override void UpdateState()
         {
-            throw new System.NotImplementedException();
+            TransitionSwitchStates();
         }
 
         public override void ExitState()
         {
-            throw new System.NotImplementedException();
+
         }
 
         public override void TransitionSwitchStates()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Move: " + _context.MoveVector.magnitude);
+            if (_context.MoveVector.magnitude < 0.1f)
+            {
+                SwitchStates(_factory.Idle());
+            }
         }
 
         public override void AnimateState()
         {
-            throw new System.NotImplementedException();
+            _context.KirbyAnimator.Play("kirby_walk");
         }
     }
 }
