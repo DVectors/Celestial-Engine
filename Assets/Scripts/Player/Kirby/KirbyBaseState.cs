@@ -4,7 +4,7 @@ namespace Player.Kirby
     {
         protected KirbyStateMachine _context;
         protected KirbyStateMachineFactory _factory;
-
+        
         public KirbyBaseState(KirbyStateMachine context, KirbyStateMachineFactory factory)
         {
             _context = context;
@@ -14,7 +14,14 @@ namespace Player.Kirby
         public abstract void EnterState();
         public abstract void UpdateState();
         public abstract void ExitState();
-        public abstract void SwitchStates();
+        public abstract void TransitionSwitchStates();
         public abstract void AnimateState();
+        
+        protected void SwitchStates(KirbyBaseState newState)
+        {
+            ExitState();
+            newState.EnterState();
+            _context.CurrentState = newState;
+        }
     }
 }

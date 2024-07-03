@@ -21,7 +21,7 @@ namespace Player.Kirby.States
             throw new System.NotImplementedException();
         }
 
-        public override void SwitchStates()
+        public override void TransitionSwitchStates()
         {
             throw new System.NotImplementedException();
         }
