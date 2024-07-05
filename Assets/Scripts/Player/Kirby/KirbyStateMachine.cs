@@ -1,8 +1,10 @@
 using System;
+using System.Numerics;
 using Player.Kirby;
 using StateMachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Vector2 = UnityEngine.Vector2;
 
 public class KirbyStateMachine : MonoBehaviour, IStateMachine
 {
@@ -23,22 +25,26 @@ public class KirbyStateMachine : MonoBehaviour, IStateMachine
     private PlayerInput _playerInput;
     private InputAction _moveVector;
     private InputAction _jump;
-    private bool _inputDisabled = false;
-    private bool _onCutscene = false;
     
     // Physics
     private Vector2 _cMoveVector;
     private Vector2 _velocity;
+    private float _direction;
     private float _speed = 5f;
     private float _jumpForce = 10f;
     
     //Layermask
     private LayerMask _groundLayer;
     
+    //Bools
+    private bool _inputDisabled = false;
+    private bool _onCutscene = false;
+    
     //Public getters and setters
     public KirbyBaseState CurrentState { get => _currentState; set => _currentState = value; }
     public BoxCollider2D BoxCollider { get => _boxCollider; set => _boxCollider = value; }
     public Vector2 MoveVector { get => !_onCutscene ? _moveVector.ReadValue<Vector2>() : _cMoveVector; set => _cMoveVector = value; }
+    public float Direction { get => _direction; set => _direction = value; }
     public Vector2 Velocity { get => _velocity; set => _velocity = value; }
     public float Speed { get => _speed; set => _speed = value; }
     public float JumpForce { get => _jumpForce; set => _jumpForce = value; }
@@ -69,6 +75,7 @@ public class KirbyStateMachine : MonoBehaviour, IStateMachine
     // Update is called once per frame
     void Update()
     {
+        SetSpriteOrientation();
         _currentState.UpdateState();
     }
 
@@ -76,6 +83,19 @@ public class KirbyStateMachine : MonoBehaviour, IStateMachine
     {
         _currentState.AnimateState();
     }
+
+    private void SetSpriteOrientation()
+    {
+        if (_direction < 0f)
+        {
+            _renderer.flipX = true;
+        }
+        else if (_direction > 0f)
+        {
+            _renderer.flipX = false;
+        }
+    }
+    
 
     public void SetOnCutscene(bool value)
     {

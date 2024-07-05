@@ -27,7 +27,7 @@ namespace Player.Kirby.States
         public override void TransitionSwitchStates()
         {
             Debug.Log("Move: " + _context.MoveVector.magnitude);
-            if (_context.MoveVector.magnitude > 0.1f)
+            if (_context.MoveVector.x  < 0f || _context.MoveVector.x > 0f)
             {
                 SwitchStates(_factory.Walking());
             }
