@@ -22,16 +22,29 @@ public class KirbyStateMachine : MonoBehaviour, IStateMachine
     //Input
     private PlayerInput _playerInput;
     private InputAction _moveVector;
-    private Vector2 _cMoveVector;
     private InputAction _jump;
     private bool _inputDisabled = false;
     private bool _onCutscene = false;
     
+    // Physics
+    private Vector2 _cMoveVector;
+    private Vector2 _velocity;
+    private float _speed = 5f;
+    private float _jumpForce = 10f;
+    
+    //Layermask
+    private LayerMask _groundLayer;
+    
     //Public getters and setters
     public KirbyBaseState CurrentState { get => _currentState; set => _currentState = value; }
-    public Vector2 MoveVector { get => !_onCutscene ? _moveVector.ReadValue<Vector2>().normalized : _cMoveVector; set => _cMoveVector = value; }
+    public BoxCollider2D BoxCollider { get => _boxCollider; set => _boxCollider = value; }
+    public Vector2 MoveVector { get => !_onCutscene ? _moveVector.ReadValue<Vector2>() : _cMoveVector; set => _cMoveVector = value; }
+    public Vector2 Velocity { get => _velocity; set => _velocity = value; }
+    public float Speed { get => _speed; set => _speed = value; }
+    public float JumpForce { get => _jumpForce; set => _jumpForce = value; }
     public InputAction Jump { get => _jump; set => _jump = value; }
     public Animator KirbyAnimator { get => _animator; set => _animator = value; }
+    public LayerMask GroundLayer { get => _groundLayer; set => _groundLayer = value; }
     
         // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

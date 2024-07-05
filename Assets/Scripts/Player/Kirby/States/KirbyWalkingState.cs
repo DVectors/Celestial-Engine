@@ -15,6 +15,9 @@ namespace Player.Kirby.States
 
         public override void UpdateState()
         {
+            var direction = new Vector2(_context.MoveVector.x, _context.MoveVector.y);
+            _context.transform.Translate(direction * (_context.Speed * Time.deltaTime));
+            
             TransitionSwitchStates();
         }
 
