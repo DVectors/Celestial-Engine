@@ -26,10 +26,16 @@ namespace Player.Kirby.States
 
         public override void TransitionSwitchStates()
         {
-            Debug.Log("Move: " + _context.MoveVector.magnitude);
             if (_context.MoveVector.x  < 0f || _context.MoveVector.x > 0f)
             {
+                Debug.Log("Move X: " + _context.MoveVector.x);
                 SwitchStates(_factory.Walking());
+            }
+
+            if (_context.MoveVector.y < 0f)
+            {
+                Debug.Log("Move Y: " + _context.MoveVector.y);
+                SwitchStates(_factory.Crouching());
             }
         }
 

@@ -14,6 +14,7 @@ public class KirbyStateMachineFactory
         _context = context;
 
         _states[PlayerStates.IDLE] = new KirbyIdleState(context, this);
+        _states[PlayerStates.CROUCHING] = new KirbyCrouchingState(context, this);
         _states[PlayerStates.WALKING] = new KirbyWalkingState(context, this);
         _states[PlayerStates.RUNNING] = new KirbyRunningState(context, this);
         _states[PlayerStates.JUMPING] = new KirbyJumpingState(context, this);
@@ -24,6 +25,11 @@ public class KirbyStateMachineFactory
     public KirbyBaseState Idle()
     {
         return _states[PlayerStates.IDLE];
+    }
+    
+    public KirbyBaseState Crouching()
+    {
+        return _states[PlayerStates.CROUCHING];
     }
     
     public KirbyBaseState Walking()
